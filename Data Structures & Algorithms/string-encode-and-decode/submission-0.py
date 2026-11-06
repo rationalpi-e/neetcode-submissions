@@ -1,28 +1,21 @@
 class Solution:
 
     def encode(self, strs: List[str]) -> str:
-        encoded_str = ""
-        for s in strs:
-            
-            encoded_str += f"{len(s)}#{s}"
-        return encoded_str
+        return ''.join(f'{len(str)}#{str}' for str in strs)
 
     def decode(self, s: str) -> List[str]:
-        res = []
+        mylist = []
+
         i = 0
-        
         while i < len(s):
             j = i
-            while s[j] != '#':
+            while s[j] != "#":
                 j += 1
-        
             length = int(s[i:j])
-            
-            start_of_str = j + 1
-            end_of_str = start_of_str + length
-            
-            res.append(s[start_of_str:end_of_str])
-            
-            i = end_of_str
-            
-        return res
+
+            word = s[j + 1 : j  + 1 + length]
+            mylist.append(word)
+
+            i = j+ 1+ length
+
+        return mylist
