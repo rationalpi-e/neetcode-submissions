@@ -1,12 +1,8 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        dct = {}
-        
-        for word in strs:
-            new = "".join(sorted(word))
-            if new not in dct:
-                dct[new] = []
-                
-            dct[new].append(word)
+        mydict = defaultdict(list)
 
-        return list(dct.values())
+        for word in strs:
+            mydict[''.join(sorted(word))].append(word)
+
+        return list(mydict.values())
