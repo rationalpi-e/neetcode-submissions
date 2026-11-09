@@ -1,19 +1,19 @@
 class Solution:
     def calPoints(self, operations: List[str]) -> int:
-        result = []
-
+        resLst = []
+        res = 0
         for op in operations:
-
             if op == "+":
-                result.append(result[-1] + result[-2])
-
+                resLst.append(resLst[-1] + resLst[-2])
+                res += (resLst[-2] + resLst[-3])
             elif op == "D":
-                result.append(2 * result[-1])
-
+                resLst.append(resLst[-1] * 2)
+                res += resLst[-1]
             elif op == "C":
-                result.pop()
-
+                res -= resLst.pop()
             else:
-                result.append(int(op))
-
-        return sum(result)
+                resLst.append(int(op))
+                res += int(op)
+        
+        return res
+        
